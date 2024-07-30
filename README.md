@@ -1,1 +1,0 @@
-# SANADesktop_LPIII
