@@ -37,6 +37,7 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             editarSenhaDeAcessoToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
+            checkedListBox1 = new CheckedListBox();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -125,11 +126,20 @@
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
+            // checkedListBox1
+            // 
+            checkedListBox1.FormattingEnabled = true;
+            checkedListBox1.Location = new Point(899, 398);
+            checkedListBox1.Name = "checkedListBox1";
+            checkedListBox1.Size = new Size(8, 4);
+            checkedListBox1.TabIndex = 6;
+            // 
             // MenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(914, 600);
+            Controls.Add(checkedListBox1);
             Controls.Add(btnSolicitarAceite);
             Controls.Add(btnHistoricoAceite);
             Controls.Add(btnVisualizarEditar);
@@ -158,5 +168,6 @@
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem editarSenhaDeAcessoToolStripMenuItem;
         private ToolStripMenuItem sairToolStripMenuItem;
+        private CheckedListBox checkedListBox1;
     }
 }

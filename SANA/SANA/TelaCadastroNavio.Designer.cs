@@ -54,6 +54,7 @@
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
+            btnEnviar = new Button();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             // 
             lblCadastroNavio.AutoSize = true;
             lblCadastroNavio.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblCadastroNavio.Location = new Point(22, 20);
+            lblCadastroNavio.Location = new Point(24, 42);
             lblCadastroNavio.Name = "lblCadastroNavio";
             lblCadastroNavio.Size = new Size(262, 41);
             lblCadastroNavio.TabIndex = 0;
@@ -121,7 +122,7 @@
             // 
             // txtCaladoEntrada
             // 
-            txtCaladoEntrada.Location = new Point(413, 208);
+            txtCaladoEntrada.Location = new Point(530, 208);
             txtCaladoEntrada.Name = "txtCaladoEntrada";
             txtCaladoEntrada.Size = new Size(198, 27);
             txtCaladoEntrada.TabIndex = 8;
@@ -129,7 +130,7 @@
             // lblCaladoEntrada
             // 
             lblCaladoEntrada.AutoSize = true;
-            lblCaladoEntrada.Location = new Point(412, 185);
+            lblCaladoEntrada.Location = new Point(529, 185);
             lblCaladoEntrada.Name = "lblCaladoEntrada";
             lblCaladoEntrada.Size = new Size(192, 20);
             lblCaladoEntrada.TabIndex = 7;
@@ -154,7 +155,7 @@
             // 
             // txtCaladoSaida
             // 
-            txtCaladoSaida.Location = new Point(211, 208);
+            txtCaladoSaida.Location = new Point(291, 208);
             txtCaladoSaida.Name = "txtCaladoSaida";
             txtCaladoSaida.Size = new Size(157, 27);
             txtCaladoSaida.TabIndex = 12;
@@ -162,7 +163,7 @@
             // lblCaladoSaida
             // 
             lblCaladoSaida.AutoSize = true;
-            lblCaladoSaida.Location = new Point(211, 185);
+            lblCaladoSaida.Location = new Point(291, 185);
             lblCaladoSaida.Name = "lblCaladoSaida";
             lblCaladoSaida.Size = new Size(157, 20);
             lblCaladoSaida.TabIndex = 11;
@@ -170,7 +171,7 @@
             // 
             // txtPontal
             // 
-            txtPontal.Location = new Point(189, 299);
+            txtPontal.Location = new Point(291, 299);
             txtPontal.Name = "txtPontal";
             txtPontal.Size = new Size(125, 27);
             txtPontal.TabIndex = 14;
@@ -179,7 +180,7 @@
             // lblPontal
             // 
             lblPontal.AutoSize = true;
-            lblPontal.Location = new Point(189, 276);
+            lblPontal.Location = new Point(291, 276);
             lblPontal.Name = "lblPontal";
             lblPontal.Size = new Size(110, 20);
             lblPontal.TabIndex = 13;
@@ -204,7 +205,7 @@
             // 
             // txtTipoNavio
             // 
-            txtTipoNavio.Location = new Point(390, 387);
+            txtTipoNavio.Location = new Point(530, 276);
             txtTipoNavio.Name = "txtTipoNavio";
             txtTipoNavio.Size = new Size(125, 27);
             txtTipoNavio.TabIndex = 18;
@@ -212,7 +213,7 @@
             // lblTipoNavio
             // 
             lblTipoNavio.AutoSize = true;
-            lblTipoNavio.Location = new Point(390, 364);
+            lblTipoNavio.Location = new Point(530, 253);
             lblTipoNavio.Name = "lblTipoNavio";
             lblTipoNavio.Size = new Size(82, 20);
             lblTipoNavio.TabIndex = 17;
@@ -237,7 +238,7 @@
             // 
             // txtAnoConstrucao
             // 
-            txtAnoConstrucao.Location = new Point(229, 387);
+            txtAnoConstrucao.Location = new Point(291, 387);
             txtAnoConstrucao.MaxLength = 4;
             txtAnoConstrucao.Name = "txtAnoConstrucao";
             txtAnoConstrucao.Size = new Size(132, 27);
@@ -247,7 +248,7 @@
             // lblAnoConstrucao
             // 
             lblAnoConstrucao.AutoSize = true;
-            lblAnoConstrucao.Location = new Point(229, 364);
+            lblAnoConstrucao.Location = new Point(291, 364);
             lblAnoConstrucao.Name = "lblAnoConstrucao";
             lblAnoConstrucao.Size = new Size(127, 20);
             lblAnoConstrucao.TabIndex = 21;
@@ -273,15 +274,28 @@
             // sairToolStripMenuItem
             // 
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            sairToolStripMenuItem.Size = new Size(224, 26);
+            sairToolStripMenuItem.Size = new Size(117, 26);
             sairToolStripMenuItem.Text = "Sair";
             sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
+            // 
+            // btnEnviar
+            // 
+            btnEnviar.BackColor = SystemColors.Highlight;
+            btnEnviar.ForeColor = SystemColors.ControlLightLight;
+            btnEnviar.Location = new Point(22, 458);
+            btnEnviar.Name = "btnEnviar";
+            btnEnviar.Size = new Size(231, 52);
+            btnEnviar.TabIndex = 24;
+            btnEnviar.Text = "Enviar";
+            btnEnviar.UseVisualStyleBackColor = false;
+            btnEnviar.Click += btnEnviar_Click;
             // 
             // TelaCadastroNavio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 547);
+            Controls.Add(btnEnviar);
             Controls.Add(txtAnoConstrucao);
             Controls.Add(lblAnoConstrucao);
             Controls.Add(txtDwt);
@@ -309,6 +323,7 @@
             MainMenuStrip = menuStrip1;
             Name = "TelaCadastroNavio";
             Text = "TelaCadastroNavio";
+            Load += TelaCadastroNavio_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);
@@ -343,5 +358,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem sairToolStripMenuItem;
+        private Button btnEnviar;
     }
 }

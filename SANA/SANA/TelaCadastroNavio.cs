@@ -67,13 +67,23 @@ namespace SANA
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MenuPrincipal menuPrincipal = new MenuPrincipal();  
+            MenuPrincipal menuPrincipal = new MenuPrincipal();
 
             menuPrincipal.Show();
 
             this.Hide();
 
 
+        }
+
+        private void TelaCadastroNavio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Enviado com sucesso");
         }
     }
 }

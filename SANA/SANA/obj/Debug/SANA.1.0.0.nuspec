@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>SANA</id>
+    <version>1.0.0</version>
+    <authors>SANA</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="6d5af6dffe226459987ca73006f25fc4b689858b" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+  </metadata>
+  <files>
+    <file src="C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\bin\Debug\net8.0-windows\SANA.runtimeconfig.json" target="lib\net8.0-windows7.0\SANA.runtimeconfig.json" />
+    <file src="C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\bin\Debug\net8.0-windows\SANA.dll" target="lib\net8.0-windows7.0\SANA.dll" />
+  </files>
+</package>
