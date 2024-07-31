@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SANA.classesSana;
+
 
 namespace SANA
 {
@@ -81,9 +83,71 @@ namespace SANA
 
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private void BtnEnviar_Click(object sender, EventArgs e)
         {
+            pnlInfromacoesEmbarcao.Visible = true;
+            Embarcacao embarcacao = new Embarcacao
+            {
+                Nome = txtNomeNavio.Text,
+                TamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text),
+                Boca = Convert.ToDouble(txtBoca.Text),
+                Loa = Convert.ToDouble(txtLoa.Text),
+                AnoConstrucao = Convert.ToInt32(txtAnoConstrucao.Text),
+                CaladoAereo = Convert.ToDouble(txtCaladoAereo.Text),
+                CaladoEntrada = Convert.ToDouble(txtCaladoEntrada.Text),
+                CaladoSaida = Convert.ToDouble(txtCaladoSaida.Text),
+                TipoEmbarcacao = txtTipoNavio.Text,
+                Dwt = txtDwt.Text,
+                Pontal = Convert.ToDouble(txtPontal.Text)
+            };
+
+
+
+
+            lblInformcoesEmbarcacao.Text = embarcacao.ToString();
+
             MessageBox.Show("Enviado com sucesso");
+        }
+
+        private void label1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEnviar_Click_1(object sender, EventArgs e)
+        {
+            pnlInfromacoesEmbarcao.Visible = true;
+            Embarcacao embarcacao = new Embarcacao
+            {
+                Nome = txtNomeNavio.Text,
+                TamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text),
+                Boca = Convert.ToDouble(txtBoca.Text),
+                Loa = Convert.ToDouble(txtLoa.Text),
+                AnoConstrucao = Convert.ToInt32(txtAnoConstrucao.Text),
+                CaladoAereo = Convert.ToDouble(txtCaladoAereo.Text),
+                CaladoEntrada = Convert.ToDouble(txtCaladoEntrada.Text),
+                CaladoSaida = Convert.ToDouble(txtCaladoSaida.Text),
+                TipoEmbarcacao = txtTipoNavio.Text,
+                Dwt = txtDwt.Text,
+                Pontal = Convert.ToDouble(txtPontal.Text)
+            };
+
+
+
+
+            lblInformcoesEmbarcacao.Text = embarcacao.ToString();
+
+            
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            DialogResult resultMessageBox =  MessageBox.Show("Enviado com sucesso");
+            if (resultMessageBox == DialogResult.OK)
+            {
+                pnlInfromacoesEmbarcao.Visible = false;
+            }
+
         }
     }
 }

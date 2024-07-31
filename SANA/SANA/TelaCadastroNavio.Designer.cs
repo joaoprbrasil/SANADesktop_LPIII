@@ -55,7 +55,12 @@
             menuToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
             btnEnviar = new Button();
+            pnlInfromacoesEmbarcao = new Panel();
+            btnConfirmar = new Button();
+            lblInformcoesEmbarcacao = new Label();
+            lblTituloInfos = new Label();
             menuStrip1.SuspendLayout();
+            pnlInfromacoesEmbarcao.SuspendLayout();
             SuspendLayout();
             // 
             // lblCadastroNavio
@@ -288,13 +293,54 @@
             btnEnviar.TabIndex = 24;
             btnEnviar.Text = "Enviar";
             btnEnviar.UseVisualStyleBackColor = false;
-            btnEnviar.Click += btnEnviar_Click;
+            btnEnviar.Click += btnEnviar_Click_1;
+            // 
+            // pnlInfromacoesEmbarcao
+            // 
+            pnlInfromacoesEmbarcao.BackColor = SystemColors.ActiveBorder;
+            pnlInfromacoesEmbarcao.Controls.Add(lblTituloInfos);
+            pnlInfromacoesEmbarcao.Controls.Add(btnConfirmar);
+            pnlInfromacoesEmbarcao.Controls.Add(lblInformcoesEmbarcacao);
+            pnlInfromacoesEmbarcao.Location = new Point(213, 86);
+            pnlInfromacoesEmbarcao.Name = "pnlInfromacoesEmbarcao";
+            pnlInfromacoesEmbarcao.Size = new Size(508, 366);
+            pnlInfromacoesEmbarcao.TabIndex = 25;
+            pnlInfromacoesEmbarcao.Visible = false;
+            // 
+            // btnConfirmar
+            // 
+            btnConfirmar.Location = new Point(180, 326);
+            btnConfirmar.Name = "btnConfirmar";
+            btnConfirmar.Size = new Size(132, 37);
+            btnConfirmar.TabIndex = 1;
+            btnConfirmar.Text = "Confirmar";
+            btnConfirmar.UseVisualStyleBackColor = true;
+            btnConfirmar.Click += btnConfirmar_Click;
+            // 
+            // lblInformcoesEmbarcacao
+            // 
+            lblInformcoesEmbarcacao.AutoSize = true;
+            lblInformcoesEmbarcacao.Location = new Point(188, 53);
+            lblInformcoesEmbarcacao.Name = "lblInformcoesEmbarcacao";
+            lblInformcoesEmbarcacao.Size = new Size(0, 20);
+            lblInformcoesEmbarcacao.TabIndex = 0;
+            lblInformcoesEmbarcacao.Click += label1_Click_1;
+            // 
+            // lblTituloInfos
+            // 
+            lblTituloInfos.AutoSize = true;
+            lblTituloInfos.Location = new Point(146, 13);
+            lblTituloInfos.Name = "lblTituloInfos";
+            lblTituloInfos.Size = new Size(198, 20);
+            lblTituloInfos.TabIndex = 2;
+            lblTituloInfos.Text = "Informações da embarcação";
             // 
             // TelaCadastroNavio
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1054, 547);
+            Controls.Add(pnlInfromacoesEmbarcao);
             Controls.Add(btnEnviar);
             Controls.Add(txtAnoConstrucao);
             Controls.Add(lblAnoConstrucao);
@@ -326,6 +372,8 @@
             Load += TelaCadastroNavio_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            pnlInfromacoesEmbarcao.ResumeLayout(false);
+            pnlInfromacoesEmbarcao.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -359,5 +407,9 @@
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem sairToolStripMenuItem;
         private Button btnEnviar;
+        private Panel pnlInfromacoesEmbarcao;
+        private Label lblInformcoesEmbarcacao;
+        private Button btnConfirmar;
+        private Label lblTituloInfos;
     }
 }

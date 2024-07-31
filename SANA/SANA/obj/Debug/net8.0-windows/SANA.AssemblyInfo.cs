@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SANA")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+345116da3aae63d12b4239d305bb1583aa974291")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+575d21d6fa4b30178a3fc706a22f8be0dc09a5c6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SANA")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SANA")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

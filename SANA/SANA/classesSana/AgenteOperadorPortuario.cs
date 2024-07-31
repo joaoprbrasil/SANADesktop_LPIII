@@ -4,9 +4,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SANA
+namespace SANA.classesSana
 {
-    internal class AgenteOperadorPortuario
+    internal class AgenteOperadorPortuario : User
     {
+
+        public AgenteOperadorPortuario()
+        {
+        }
+
+        public AgenteOperadorPortuario(string nome, string password, string matricula) : base(nome, password, matricula)
+        {
+        }
+
+
+
     }
 }
