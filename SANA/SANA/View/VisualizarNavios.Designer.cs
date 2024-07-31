@@ -34,6 +34,7 @@
             label1 = new Label();
             btnExcluir = new Button();
             button1 = new Button();
+            button2 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -60,7 +61,7 @@
             // 
             btnVisualizarEditar.BackColor = SystemColors.Highlight;
             btnVisualizarEditar.ForeColor = SystemColors.ControlLightLight;
-            btnVisualizarEditar.Location = new Point(15, 31);
+            btnVisualizarEditar.Location = new Point(444, 31);
             btnVisualizarEditar.Margin = new Padding(3, 2, 3, 2);
             btnVisualizarEditar.Name = "btnVisualizarEditar";
             btnVisualizarEditar.Size = new Size(153, 34);
@@ -73,7 +74,7 @@
             // 
             btnEditar.BackColor = SystemColors.Highlight;
             btnEditar.ForeColor = SystemColors.ControlLightLight;
-            btnEditar.Location = new Point(174, 31);
+            btnEditar.Location = new Point(603, 31);
             btnEditar.Margin = new Padding(3, 2, 3, 2);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(153, 34);
@@ -96,7 +97,7 @@
             // 
             btnExcluir.BackColor = SystemColors.Highlight;
             btnExcluir.ForeColor = SystemColors.ControlLightLight;
-            btnExcluir.Location = new Point(333, 31);
+            btnExcluir.Location = new Point(762, 31);
             btnExcluir.Margin = new Padding(3, 2, 3, 2);
             btnExcluir.Name = "btnExcluir";
             btnExcluir.Size = new Size(153, 34);
@@ -118,11 +119,25 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click_1;
             // 
+            // button2
+            // 
+            button2.BackColor = SystemColors.Highlight;
+            button2.ForeColor = SystemColors.ControlLightLight;
+            button2.Location = new Point(15, 31);
+            button2.Margin = new Padding(3, 2, 3, 2);
+            button2.Name = "button2";
+            button2.Size = new Size(153, 34);
+            button2.TabIndex = 9;
+            button2.Text = "Emitir Solicitacao";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click_1;
+            // 
             // VisualizarNavios
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(934, 483);
+            Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(btnExcluir);
             Controls.Add(label1);
@@ -147,5 +162,6 @@
         private Label label1;
         private Button btnExcluir;
         private Button button1;
+        private Button button2;
     }
 }

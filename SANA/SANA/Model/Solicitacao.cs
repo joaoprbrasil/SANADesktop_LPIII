@@ -9,14 +9,19 @@ namespace SANA.Model
     public class Solicitacao
     {
 
-        public Navio navio { get; set; }
 
-        public bool Status { get; set; }
+        public String nome { get; set; } = string.Empty;
 
-        public Solicitacao(Navio navio, bool status)
+        public String tipo { get; set; } = string.Empty;
+
+        public String status {  get; set; } = string.Empty;
+
+        public Solicitacao(String nome, String tipo, String status) 
         {
-            this.navio = navio;
-            Status = status;
+            this.nome = nome;
+            this.tipo = tipo;
+            this.status = status;
         }
+
     }
 }

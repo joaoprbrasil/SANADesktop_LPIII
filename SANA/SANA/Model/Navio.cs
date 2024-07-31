@@ -23,9 +23,11 @@ namespace SANA.Model
         public string Tipo { get; set; } = string.Empty;
         public decimal Salario { get; set; }
 
-        public List<Solicitacao> Solicitacoes { get; set; } = new List<Solicitacao>();
+        public String Solicitacao { get; set; } = "Em processo.";
 
-        public Navio(string nomeNavio, double caladoAereo, double dWT, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo, decimal salario, List<Solicitacao> solicitacoes)
+        //public List<Solicitacao> Solicitacoes { get; set; } = new List<Solicitacao>();
+
+        public Navio(string nomeNavio, double caladoAereo, double dWT, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo, decimal salario, String solicitacao)
         {
             NomeNavio = nomeNavio;
             CaladoAereo = caladoAereo;
@@ -39,7 +41,7 @@ namespace SANA.Model
             AnoConstrucao = anoConstrucao;
             Tipo = tipo;
             Salario = salario;
-            Solicitacoes = solicitacoes;
+            Solicitacao = solicitacao;
         }
     }
 }

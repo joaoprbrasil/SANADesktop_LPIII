@@ -36,7 +36,6 @@
             visualizarEditarToolStripMenuItem1 = new ToolStripMenuItem();
             solicitaçõesToolStripMenuItem = new ToolStripMenuItem();
             visualizarEditarToolStripMenuItem = new ToolStripMenuItem();
-            históricoDeAceToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -81,7 +80,7 @@
             // 
             // solicitaçõesToolStripMenuItem
             // 
-            solicitaçõesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { visualizarEditarToolStripMenuItem, históricoDeAceToolStripMenuItem });
+            solicitaçõesToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { visualizarEditarToolStripMenuItem });
             solicitaçõesToolStripMenuItem.Name = "solicitaçõesToolStripMenuItem";
             solicitaçõesToolStripMenuItem.Size = new Size(81, 20);
             solicitaçõesToolStripMenuItem.Text = "Solicitações";
@@ -90,15 +89,9 @@
             // visualizarEditarToolStripMenuItem
             // 
             visualizarEditarToolStripMenuItem.Name = "visualizarEditarToolStripMenuItem";
-            visualizarEditarToolStripMenuItem.Size = new Size(174, 22);
-            visualizarEditarToolStripMenuItem.Text = "Solicitar Aceite";
+            visualizarEditarToolStripMenuItem.Size = new Size(189, 22);
+            visualizarEditarToolStripMenuItem.Text = "Gerenciar Solicitações";
             visualizarEditarToolStripMenuItem.Click += visualizarEditarToolStripMenuItem_Click;
-            // 
-            // históricoDeAceToolStripMenuItem
-            // 
-            históricoDeAceToolStripMenuItem.Name = "históricoDeAceToolStripMenuItem";
-            históricoDeAceToolStripMenuItem.Size = new Size(174, 22);
-            históricoDeAceToolStripMenuItem.Text = "Histórico de Aceite";
             // 
             // MenuPrincipal
             // 
@@ -126,7 +119,6 @@
         private ToolStripMenuItem cadastrarNavioToolStripMenuItem;
         private ToolStripMenuItem solicitaçõesToolStripMenuItem;
         private ToolStripMenuItem visualizarEditarToolStripMenuItem;
-        private ToolStripMenuItem históricoDeAceToolStripMenuItem;
         private ToolStripMenuItem cadastrarNavioToolStripMenuItem1;
         private ToolStripMenuItem visualizarEditarToolStripMenuItem1;
         private ToolStripMenuItem menuToolStripMenuItem1;

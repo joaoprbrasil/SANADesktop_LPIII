@@ -92,7 +92,7 @@ namespace SANA
 
         private void visualizarEditarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SolicitarAceite solicitarAceite = new SolicitarAceite();
+            SolicitarAceite solicitarAceite = new SolicitarAceite(navios);
             solicitarAceite.MdiParent = this;
             solicitarAceite.Show();
         }

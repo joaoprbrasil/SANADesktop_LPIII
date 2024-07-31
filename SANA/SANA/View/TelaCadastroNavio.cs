@@ -131,8 +131,7 @@ namespace SANA
                     decimal salario = 100;
                     //decimal salario = Convert.ToDecimal(txtTipoNavio.Text);
 
-                    List<Solicitacao> solicitacaoNavio = new List<Solicitacao>();
-                    Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, salario, solicitacaoNavio);
+                    Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, salario, "Em processo.");
                     navios.Add(navio);
 
                     MessageBox.Show("Navio cadastrado com sucesso.");
