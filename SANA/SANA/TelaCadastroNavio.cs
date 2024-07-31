@@ -8,14 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SANA.classesSana;
+using SANA.Entity;
 
 
 namespace SANA
 {
     public partial class TelaCadastroNavio : Form
     {
+        private static readonly Embarcacao embarcacao1 = new Embarcacao();
+        private Embarcacao embarcacao;
+
+      
+
         public TelaCadastroNavio()
         {
+            
+
             InitializeComponent();
         }
 
@@ -86,7 +94,7 @@ namespace SANA
         private void BtnEnviar_Click(object sender, EventArgs e)
         {
             pnlInfromacoesEmbarcao.Visible = true;
-            Embarcacao embarcacao = new Embarcacao
+            embarcacao = new Embarcacao
             {
                 Nome = txtNomeNavio.Text,
                 TamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text),
@@ -145,6 +153,21 @@ namespace SANA
             DialogResult resultMessageBox =  MessageBox.Show("Enviado com sucesso");
             if (resultMessageBox == DialogResult.OK)
             {
+                foreach (var embarcacao in EmbarcacaoEntity.embarcacaoLst)
+                {
+                    ListViewItem item = new ListViewItem(embarcacao.Nome);
+                    item.SubItems.Add(embarcacao.TamanhoLanca.ToString());
+                    item.SubItems.Add(embarcacao.Boca.ToString());
+                    item.SubItems.Add(embarcacao.Loa.ToString());
+                    item.SubItems.Add(embarcacao.AnoConstrucao.ToString());
+                    item.SubItems.Add(embarcacao.CaladoAereo.ToString());
+                    item.SubItems.Add(embarcacao.CaladoEntrada.ToString());
+                    item.SubItems.Add(embarcacao.CaladoSaida.ToString());
+                    item.SubItems.Add(embarcacao.TipoEmbarcacao);
+                    item.SubItems.Add(embarcacao.Dwt);
+                    item.SubItems.Add(embarcacao.Pontal.ToString());
+                   
+                }
                 pnlInfromacoesEmbarcao.Visible = false;
             }
 

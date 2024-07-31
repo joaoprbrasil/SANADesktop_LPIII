@@ -73,6 +73,7 @@
             btnVisualizarEditar.TabIndex = 2;
             btnVisualizarEditar.Text = "Visualizar/Editar";
             btnVisualizarEditar.UseVisualStyleBackColor = false;
+            btnVisualizarEditar.Click += btnVisualizarEditar_Click;
             // 
             // btnHistoricoAceite
             // 

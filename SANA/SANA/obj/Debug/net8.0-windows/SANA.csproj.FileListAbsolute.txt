@@ -36,3 +36,4 @@ C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\obj\Debug\net8.0-windows
 C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\obj\Debug\net8.0-windows\SANA.genruntimeconfig.cache
 C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\obj\Debug\net8.0-windows\ref\SANA.dll
 C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\obj\Debug\net8.0-windows\SANA.TelaCadastroNavio.resources
+C:\Users\marqu\Source\Repos\SANADesktop_LPIII\SANA\SANA\obj\Debug\net8.0-windows\SANA.VisualizarEditar.resources

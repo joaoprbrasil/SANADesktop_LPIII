@@ -57,5 +57,12 @@ namespace SANA
             telaCadastroNavio.Show();
             this.Hide();
         }
+
+        private void btnVisualizarEditar_Click(object sender, EventArgs e)
+        {
+            VisualizarEditar visualizarEditar = new VisualizarEditar();
+            visualizarEditar.Show();
+            this.Hide();
+        }
     }
 }

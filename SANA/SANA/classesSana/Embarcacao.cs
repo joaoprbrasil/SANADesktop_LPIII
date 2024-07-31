@@ -6,7 +6,7 @@
         private string tipoCarga;
         private string tipoEmbarcacao;
         private List<string> solicitacao;
-        private List<string> planoAmarracao;
+      
         private double loa;
         private double boca;
         private double caladoEntrada;
@@ -28,7 +28,6 @@
         public string TipoCarga { get => tipoCarga; set => tipoCarga = value; }
         public string TipoEmbarcacao { get => tipoEmbarcacao; set => tipoEmbarcacao = value; }
         public List<string> Solicitacao { get => solicitacao; set => solicitacao = value; }
-        public List<string> PlanoAmarracao { get => planoAmarracao; set => planoAmarracao = value; }
         public double Loa { get => loa; set => loa = value; }
         public double Boca { get => boca; set => boca = value; }
         public double CaladoEntrada { get => caladoEntrada; set => caladoEntrada = value; }
