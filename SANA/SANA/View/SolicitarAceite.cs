@@ -39,6 +39,10 @@ namespace SANA
             {
                 label1.Text = "";
                 dataGridView1.DataSource = solicitacoes;
+                dataGridView1.Columns[0].Width = 290;
+                dataGridView1.Columns[1].Width = 275;
+                dataGridView1.Columns[2].Width = 290;
+
             }
             this.navios = navios;
         }
@@ -121,6 +125,11 @@ namespace SANA
                     }
                 }
             }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
