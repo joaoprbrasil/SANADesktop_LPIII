@@ -55,36 +55,17 @@ namespace SANA
             this.Hide();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
-
                 DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
                 int index = linhaSelecionada.Index;
                 string nomeNavio = linhaSelecionada.Cells[0].Value.ToString();
                 string tipo = linhaSelecionada.Cells[1].Value.ToString();
 
-
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-
                     for (int i = 0; i < navios.Count; i++)
                     {
                         if (navios[i].NomeNavio.Equals(nomeNavio) && navios[i].Tipo.Equals(tipo))
@@ -95,30 +76,15 @@ namespace SANA
                             }
                             else
                             {
-
-                                    navios[i].Solicitacao = "Confirmada.";
-                                    SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
-                                    telaSolicitacao.Show();
-                                    this.Close();
-
+                                navios[i].Solicitacao = "Confirmada.";
+                                SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
+                                telaSolicitacao.Show();
+                                this.Close();
                             }
-
                         }
                     }
                 }
-
-
             }
-        }
-
-        private void SolicitarAceite_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -129,40 +95,32 @@ namespace SANA
             string nomeNavio = linhaSelecionada.Cells[0].Value.ToString();
             string tipo = linhaSelecionada.Cells[1].Value.ToString();
 
-                
-                    if (dataGridView1.SelectedRows.Count > 0)
+            if (dataGridView1.SelectedRows.Count > 0)
+            {
+                for (int i = 0; i < navios.Count; i++)
+                {
+                    if (navios[i].NomeNavio.Equals(nomeNavio) && navios[i].Tipo.Equals(tipo))
                     {
-
-                        for (int i = 0; i < navios.Count; i++)
+                        if (navios[i].Solicitacao.Equals("Recusada.") || navios[i].Solicitacao.Equals("Confirmada."))
                         {
-                            if (navios[i].NomeNavio.Equals(nomeNavio) && navios[i].Tipo.Equals(tipo))
+                            MessageBox.Show("Essa solicitação já foi " + navios[i].Solicitacao.ToLower() + ".");
+                        }
+                        else
+                        {
+                            DialogResult result = MessageBox.Show("Tem certeza que você deseja recusar essa solicitação?",
+                            "Warning", MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Warning);
+                            if (result == DialogResult.Yes)
                             {
-                                if (navios[i].Solicitacao.Equals("Recusada.") || navios[i].Solicitacao.Equals("Confirmada."))
-                                {
-                                    MessageBox.Show("Essa solicitação já foi " + navios[i].Solicitacao.ToLower() + ".");
-                                }
-                                else
-                                {
-                                    DialogResult result = MessageBox.Show("Tem certeza que você deseja recusar essa solicitação?",
-                                    "Warning", MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Warning);
-                                    if (result == DialogResult.Yes)
-                                        {
-                                            navios[i].Solicitacao = "Recusada.";
-                                            SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
-                                            telaSolicitacao.Show();
-                                            this.Close();
-                                        }
-                                }
-                                
+                                navios[i].Solicitacao = "Recusada.";
+                                SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
+                                telaSolicitacao.Show();
+                                this.Close();
                             }
                         }
                     }
-
-                
-            
-
-            
+                }
+            }
         }
     }
 }

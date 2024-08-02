@@ -84,7 +84,6 @@
             solicitaçõesToolStripMenuItem.Name = "solicitaçõesToolStripMenuItem";
             solicitaçõesToolStripMenuItem.Size = new Size(81, 20);
             solicitaçõesToolStripMenuItem.Text = "Solicitações";
-            solicitaçõesToolStripMenuItem.Click += solicitaçõesToolStripMenuItem_Click;
             // 
             // visualizarEditarToolStripMenuItem
             // 
@@ -107,7 +106,6 @@
             Name = "MenuPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "MenuPrincipal";
-            Load += MenuPrincipal_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

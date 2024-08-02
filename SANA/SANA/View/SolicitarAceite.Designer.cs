@@ -66,7 +66,6 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(900, 360);
             dataGridView1.TabIndex = 25;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
             // button1
             // 
@@ -103,7 +102,6 @@
             label1.Size = new Size(297, 28);
             label1.TabIndex = 28;
             label1.Text = "Nenhuma solicitação foi emitida.";
-            label1.Click += label1_Click;
             // 
             // SolicitarAceite
             // 
@@ -119,7 +117,6 @@
             Name = "SolicitarAceite";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SolicitarAceite";
-            Load += SolicitarAceite_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

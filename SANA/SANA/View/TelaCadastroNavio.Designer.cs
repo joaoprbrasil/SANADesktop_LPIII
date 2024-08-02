@@ -77,7 +77,6 @@
             lblNomeNavio.Size = new Size(91, 15);
             lblNomeNavio.TabIndex = 1;
             lblNomeNavio.Text = "Nome do Navio";
-            lblNomeNavio.Click += label1_Click;
             // 
             // txtNomeNavio
             // 
@@ -94,7 +93,6 @@
             txtLoa.Name = "txtLoa";
             txtLoa.Size = new Size(110, 23);
             txtLoa.TabIndex = 4;
-            txtLoa.TextChanged += textBox2_TextChanged;
             // 
             // lblLoa
             // 
@@ -112,7 +110,6 @@
             txtBoca.Name = "txtBoca";
             txtBoca.Size = new Size(110, 23);
             txtBoca.TabIndex = 7;
-            txtBoca.TextChanged += textBox3_TextChanged;
             // 
             // lblBoca
             // 
@@ -122,7 +119,6 @@
             lblBoca.Size = new Size(81, 15);
             lblBoca.TabIndex = 5;
             lblBoca.Text = "Boca (metros)";
-            lblBoca.Click += label3_Click;
             // 
             // txtCaladoEntrada
             // 
@@ -140,7 +136,6 @@
             lblCaladoEntrada.Size = new Size(151, 15);
             lblCaladoEntrada.TabIndex = 7;
             lblCaladoEntrada.Text = "Calado de Entrada (metros)";
-            lblCaladoEntrada.Click += lblCaladoEntrada_Click;
             // 
             // txtCaladoAereo
             // 
@@ -183,7 +178,6 @@
             txtPontal.Name = "txtPontal";
             txtPontal.Size = new Size(110, 23);
             txtPontal.TabIndex = 8;
-            txtPontal.TextChanged += textBox2_TextChanged_1;
             // 
             // lblPontal
             // 
@@ -193,7 +187,6 @@
             lblPontal.Size = new Size(89, 15);
             lblPontal.TabIndex = 13;
             lblPontal.Text = "Pontal (metros)";
-            lblPontal.Click += label2_Click;
             // 
             // txtTamanhoLanca
             // 
@@ -236,7 +229,6 @@
             txtDwt.Name = "txtDwt";
             txtDwt.Size = new Size(110, 23);
             txtDwt.TabIndex = 3;
-            txtDwt.TextChanged += textBox2_TextChanged_2;
             // 
             // lblDwt
             // 
@@ -276,7 +268,6 @@
             menuStrip1.Size = new Size(604, 24);
             menuStrip1.TabIndex = 23;
             menuStrip1.Text = "menuStrip1";
-            menuStrip1.ItemClicked += menuStrip1_ItemClicked;
             // 
             // menuToolStripMenuItem
             // 
@@ -290,7 +281,6 @@
             sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             sairToolStripMenuItem.Size = new Size(93, 22);
             sairToolStripMenuItem.Text = "Sair";
-            sairToolStripMenuItem.Click += sairToolStripMenuItem_Click;
             // 
             // btnVisualizarEditar
             // 
@@ -355,7 +345,6 @@
             Name = "TelaCadastroNavio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaCadastroNavio";
-            Load += TelaCadastroNavio_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
             ResumeLayout(false);

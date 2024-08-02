@@ -55,7 +55,6 @@
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(900, 360);
             dataGridView1.TabIndex = 0;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // btnVisualizarEditar
             // 
@@ -148,7 +147,6 @@
             Name = "VisualizarNavios";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VisualizarNavios";
-            Load += VisualizarNavios_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

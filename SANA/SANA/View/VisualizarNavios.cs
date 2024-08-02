@@ -32,22 +32,11 @@ namespace SANA.View
 
         }
 
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void btnVisualizarEditar_Click(object sender, EventArgs e)
         {
             TelaCadastroNavio telaCadastroNavio = new TelaCadastroNavio(navios);
             telaCadastroNavio.Show();
             this.Close();
-        }
-
-        private void VisualizarNavios_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void button2_Click(object sender, EventArgs e)

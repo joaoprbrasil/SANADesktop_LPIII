@@ -278,7 +278,6 @@
             lblCadastroNavio.Size = new Size(143, 32);
             lblCadastroNavio.TabIndex = 22;
             lblCadastroNavio.Text = "Editar Navio";
-            lblCadastroNavio.Click += lblCadastroNavio_Click;
             // 
             // EditarNavio
             // 
@@ -314,7 +313,6 @@
             Name = "EditarNavio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditarNavio";
-            Load += EditarNavio_Load;
             ResumeLayout(false);
             PerformLayout();
         }

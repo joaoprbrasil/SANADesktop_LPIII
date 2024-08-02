@@ -39,7 +39,6 @@ namespace SANA
             navios.Add(new Navio("Navio Theta", 10.4, 2600, 57.0, 5.5, 5.1, 32.0, 17.0, 22.5, 2014, "Cargueiro", 1800, "Em processo."));
             navios.Add(new Navio("Navio Iota", 11.3, 3100, 65.0, 6.2, 5.8, 35.0, 18.7, 24.5, 2017, "Graneleiro", 2000, "Em processo."));
             navios.Add(new Navio("Navio Kappa II", 10.9, 2500, 55.0, 5.0, 4.9, 30.0, 16.0, 22.0, 2009, "Petroleiro", 1700, "Em processo."));
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -66,9 +65,5 @@ namespace SANA
             this.Close();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

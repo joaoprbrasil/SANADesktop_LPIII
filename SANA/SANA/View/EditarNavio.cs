@@ -83,7 +83,6 @@ namespace SANA
                     decimal salario = 100;
                     //decimal salario = Convert.ToDecimal(txtTipoNavio.Text);
 
-                    
                     Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, salario, "Em processo.");
 
                     if (index >= 0 && index < navios.Count)
@@ -109,16 +108,6 @@ namespace SANA
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void lblCadastroNavio_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EditarNavio_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
