@@ -19,7 +19,7 @@ namespace SANA
         //metodo apenas para adicionar alguns navios
         private void carregarNavios()
         {
-            navios.Add(new Navio("Navio Kappa", 10.3, 2400, 55.0, 5.1, 4.8, 31.0, 16.2, 22.5, 2008, "Graneleiro", 1550,"Em processo."));
+            navios.Add(new Navio("Navio Kappa", 10.3, 2400, 55.0, 5.1, 4.8, 31.0, 16.2, 22.5, 2008, "Graneleiro", 1550, "Em processo."));
             navios.Add(new Navio("Navio Lambda", 9.8, 2200, 50.0, 4.5, 4.3, 29.5, 15.0, 21.0, 2006, "Petroleiro", 1500, "Em processo."));
             navios.Add(new Navio("Navio Mu", 11.2, 2600, 60.0, 5.4, 5.1, 32.0, 17.5, 23.0, 2011, "Cargueiro", 1700, "Em processo."));
             navios.Add(new Navio("Navio Nu", 10.5, 2500, 54.0, 5.0, 4.7, 30.0, 16.0, 22.0, 2009, "Graneleiro", 1600, "Em processo."));
@@ -65,5 +65,9 @@ namespace SANA
             this.Close();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

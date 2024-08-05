@@ -47,16 +47,24 @@ namespace SANA
                 txtBoca,
                 txtPontal,
                 txtTamanhoLanca,
-                txtAnoConstrucao,
-                txtTipoNavio
+
             };
             return campos.All(campo => !string.IsNullOrWhiteSpace(campo.Text));
         }
 
         private void btnVisualizarEditar_Click(object sender, EventArgs e)
         {
+            String tipoNavio = "null";
+            foreach (Control control in groupBox1.Controls)
+            {
+                if (control is RadioButton radioButton && radioButton.Checked)
+                {
+                    tipoNavio = radioButton.Text;
+                    break; // Encontre o RadioButton selecionado e saia do loop
+                }
+            }
 
-            if (TodosCamposPreenchidos())
+            if (TodosCamposPreenchidos() && !tipoNavio.Equals("null"))
             {
                 try
                 {
@@ -70,8 +78,7 @@ namespace SANA
                     double boca = Convert.ToDouble(txtBoca.Text);
                     double pontal = Convert.ToDouble(txtPontal.Text);
                     double tamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text);
-                    double anoConstrucao = Convert.ToDouble(txtAnoConstrucao.Text);
-                    String tipoNavio = txtTipoNavio.Text;
+                    double anoConstrucao = Convert.ToDouble(comboBox2.Text);
                     decimal salario = 100;
                     //decimal salario = Convert.ToDecimal(txtTipoNavio.Text);
 
@@ -97,6 +104,41 @@ namespace SANA
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup_1(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TelaCadastroNavio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

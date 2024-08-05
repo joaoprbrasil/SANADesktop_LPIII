@@ -109,5 +109,10 @@ namespace SANA
         {
             this.Close();
         }
+
+        private void lblDwt_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

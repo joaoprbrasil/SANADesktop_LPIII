@@ -80,10 +80,16 @@ namespace SANA
                             }
                             else
                             {
-                                navios[i].Solicitacao = "Confirmada.";
-                                SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
-                                telaSolicitacao.Show();
-                                this.Close();
+                                DialogResult result = MessageBox.Show("Tem certeza que você deseja confirmar essa solicitação?",
+                                "Warning", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning);
+                                if (result == DialogResult.Yes)
+                                {
+                                    navios[i].Solicitacao = "Confirmada.";
+                                    SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
+                                    telaSolicitacao.Show();
+                                    this.Close();
+                                }
                             }
                         }
                     }
@@ -128,6 +134,11 @@ namespace SANA
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void SolicitarAceite_Load(object sender, EventArgs e)
         {
 
         }

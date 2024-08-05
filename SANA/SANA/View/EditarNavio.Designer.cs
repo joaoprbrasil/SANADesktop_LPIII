@@ -112,9 +112,10 @@
             lblDwt.AutoSize = true;
             lblDwt.Location = new Point(634, 156);
             lblDwt.Name = "lblDwt";
-            lblDwt.Size = new Size(32, 15);
+            lblDwt.Size = new Size(94, 15);
             lblDwt.TabIndex = 43;
-            lblDwt.Text = "DWT";
+            lblDwt.Text = "DWT (toneladas)";
+            lblDwt.Click += lblDwt_Click;
             // 
             // txtTipoNavio
             // 

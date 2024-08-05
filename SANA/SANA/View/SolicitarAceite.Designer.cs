@@ -118,6 +118,7 @@
             Name = "SolicitarAceite";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "SolicitarAceite";
+            Load += SolicitarAceite_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

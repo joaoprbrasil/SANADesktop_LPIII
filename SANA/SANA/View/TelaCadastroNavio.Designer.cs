@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             lblCadastroNavio = new Label();
             lblNomeNavio = new Label();
             txtNomeNavio = new TextBox();
@@ -45,18 +46,22 @@
             lblPontal = new Label();
             txtTamanhoLanca = new TextBox();
             lblTamanhoLanca = new Label();
-            txtTipoNavio = new TextBox();
-            lblTipoNavio = new Label();
             txtDwt = new TextBox();
             lblDwt = new Label();
-            txtAnoConstrucao = new TextBox();
             lblAnoConstrucao = new Label();
             menuStrip1 = new MenuStrip();
             menuToolStripMenuItem = new ToolStripMenuItem();
             sairToolStripMenuItem = new ToolStripMenuItem();
             btnVisualizarEditar = new Button();
             button1 = new Button();
+            toolTip1 = new ToolTip(components);
+            comboBox2 = new ComboBox();
+            groupBox1 = new GroupBox();
+            radioButton3 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             menuStrip1.SuspendLayout();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // lblCadastroNavio
@@ -205,23 +210,6 @@
             lblTamanhoLanca.TabIndex = 15;
             lblTamanhoLanca.Text = "Tamanho Lança (metros)";
             // 
-            // txtTipoNavio
-            // 
-            txtTipoNavio.Location = new Point(341, 290);
-            txtTipoNavio.Margin = new Padding(3, 2, 3, 2);
-            txtTipoNavio.Name = "txtTipoNavio";
-            txtTipoNavio.Size = new Size(110, 23);
-            txtTipoNavio.TabIndex = 11;
-            // 
-            // lblTipoNavio
-            // 
-            lblTipoNavio.AutoSize = true;
-            lblTipoNavio.Location = new Point(341, 273);
-            lblTipoNavio.Name = "lblTipoNavio";
-            lblTipoNavio.Size = new Size(64, 15);
-            lblTipoNavio.TabIndex = 17;
-            lblTipoNavio.Text = "Tipo Navio";
-            // 
             // txtDwt
             // 
             txtDwt.Location = new Point(462, 106);
@@ -235,19 +223,10 @@
             lblDwt.AutoSize = true;
             lblDwt.Location = new Point(464, 89);
             lblDwt.Name = "lblDwt";
-            lblDwt.Size = new Size(32, 15);
+            lblDwt.Size = new Size(94, 15);
             lblDwt.TabIndex = 19;
-            lblDwt.Text = "DWT";
-            // 
-            // txtAnoConstrucao
-            // 
-            txtAnoConstrucao.Location = new Point(200, 290);
-            txtAnoConstrucao.Margin = new Padding(3, 2, 3, 2);
-            txtAnoConstrucao.MaxLength = 4;
-            txtAnoConstrucao.Name = "txtAnoConstrucao";
-            txtAnoConstrucao.Size = new Size(116, 23);
-            txtAnoConstrucao.TabIndex = 10;
-            txtAnoConstrucao.KeyPress += txtAnoConstrucao_KeyPress;
+            lblDwt.Text = "DWT (toneladas)";
+            toolTip1.SetToolTip(lblDwt, "Medida de quanto um navio pode transportar com segurança");
             // 
             // lblAnoConstrucao
             // 
@@ -308,19 +287,83 @@
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
+            // toolTip1
+            // 
+            toolTip1.ToolTipIcon = ToolTipIcon.Info;
+            toolTip1.Popup += toolTip1_Popup_1;
+            // 
+            // comboBox2
+            // 
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024" });
+            comboBox2.Location = new Point(200, 291);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 23);
+            comboBox2.TabIndex = 26;
+            comboBox2.SelectedIndexChanged += comboBox2_SelectedIndexChanged;
+            // 
+            // groupBox1
+            // 
+            groupBox1.Controls.Add(radioButton3);
+            groupBox1.Controls.Add(radioButton2);
+            groupBox1.Controls.Add(radioButton1);
+            groupBox1.Location = new Point(358, 207);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(177, 107);
+            groupBox1.TabIndex = 27;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Tipo Navio";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // radioButton3
+            // 
+            radioButton3.AutoSize = true;
+            radioButton3.Location = new Point(16, 71);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(79, 19);
+            radioButton3.TabIndex = 2;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "Graneleiro";
+            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.CheckedChanged += RadioButton_CheckedChanged;
+            // 
+            // radioButton2
+            // 
+            radioButton2.AutoSize = true;
+            radioButton2.Location = new Point(16, 46);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(77, 19);
+            radioButton2.TabIndex = 1;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "Cargueiro";
+            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.CheckedChanged += RadioButton_CheckedChanged;
+            // 
+            // radioButton1
+            // 
+            radioButton1.AutoSize = true;
+            radioButton1.Location = new Point(16, 21);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(76, 19);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "Petroleiro";
+            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.CheckedChanged += RadioButton_CheckedChanged;
+            // 
             // TelaCadastroNavio
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(604, 410);
+            Controls.Add(groupBox1);
+            Controls.Add(comboBox2);
             Controls.Add(button1);
             Controls.Add(btnVisualizarEditar);
-            Controls.Add(txtAnoConstrucao);
             Controls.Add(lblAnoConstrucao);
             Controls.Add(txtDwt);
             Controls.Add(lblDwt);
-            Controls.Add(txtTipoNavio);
-            Controls.Add(lblTipoNavio);
             Controls.Add(txtTamanhoLanca);
             Controls.Add(lblTamanhoLanca);
             Controls.Add(txtPontal);
@@ -345,8 +388,11 @@
             Name = "TelaCadastroNavio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "TelaCadastroNavio";
+            Load += TelaCadastroNavio_Load;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -370,16 +416,20 @@
         private Label lblPontal;
         private TextBox txtTamanhoLanca;
         private Label lblTamanhoLanca;
-        private TextBox txtTipoNavio;
-        private Label lblTipoNavio;
         private TextBox txtDwt;
         private Label lblDwt;
-        private TextBox txtAnoConstrucao;
         private Label lblAnoConstrucao;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem menuToolStripMenuItem;
         private ToolStripMenuItem sairToolStripMenuItem;
         private Button btnVisualizarEditar;
         private Button button1;
+        private ToolTip toolTip1;
+        private ComboBox comboBox1;
+        private ComboBox comboBox2;
+        private GroupBox groupBox1;
+        private RadioButton radioButton1;
+        private RadioButton radioButton3;
+        private RadioButton radioButton2;
     }
 }
