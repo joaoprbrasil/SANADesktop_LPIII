@@ -1,32 +1,31 @@
 ﻿using MySqlConnector;
+using SANA.Model.DTO;
 using System;
 using System.Collections.Generic;
 
-namespace SANA.Util
+namespace SANA.Model.DAO
 {
     public class SolicitacaoDAO
     {
         private readonly MySqlConnection _connection;
 
-        public SolicitacaoDAO()
+        public SolicitacaoDAO(MySqlConnection connection)
         {
-            var conexaoBD = new ConexaoBD();
-            _connection = conexaoBD.RetornaConexao();
+            _connection = connection;
         }
 
-        // Adiciona uma nova solicitação ao banco de dados
+        // Método para adicionar uma nova solicitação
         public void Adicionar(Solicitacao solicitacao)
         {
             try
             {
                 string query = @"INSERT INTO Solicitacoes (Nome, Data, Status, NavioId)
                                  VALUES (@Nome, @Data, @Status, @NavioId)";
-
                 using var command = new MySqlCommand(query, _connection);
                 command.Parameters.AddWithValue("@Nome", solicitacao.Nome);
                 command.Parameters.AddWithValue("@Data", solicitacao.Data);
                 command.Parameters.AddWithValue("@Status", solicitacao.Status);
-                command.Parameters.AddWithValue("@NavioId", solicitacao.Navio?.Id); // Considera o ID do Navio
+                command.Parameters.AddWithValue("@NavioId", solicitacao.Navio?.id ?? (object)DBNull.Value);
 
                 _connection.Open();
                 command.ExecuteNonQuery();
@@ -38,19 +37,17 @@ namespace SANA.Util
             }
         }
 
-        // Obtém uma solicitação pelo ID
+        // Método para obter uma solicitação por ID
         public Solicitacao ObterPorId(int id)
         {
             try
             {
-                string query = @"SELECT Id, Nome, Data, Status, NavioId FROM Solicitacoes WHERE Id = @Id";
-
+                string query = "SELECT * FROM Solicitacoes WHERE Id = @Id";
                 using var command = new MySqlCommand(query, _connection);
                 command.Parameters.AddWithValue("@Id", id);
 
                 _connection.Open();
                 using var reader = command.ExecuteReader();
-
                 if (reader.Read())
                 {
                     return new Solicitacao
@@ -59,21 +56,19 @@ namespace SANA.Util
                         Nome = reader.GetString("Nome"),
                         Data = reader.GetDateTime("Data"),
                         Status = reader.GetString("Status"),
-                        Navio = ObterNavioPorId(reader.GetInt32("NavioId")) // Carrega o navio associado
+                        Navio = new Navio { id = reader.GetInt32("NavioId") } // Simplificação
                     };
                 }
-
                 _connection.Close();
-                return null;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao obter solicitação por ID: {ex.Message}");
-                return null;
+                Console.WriteLine($"Erro ao obter solicitação: {ex.Message}");
             }
+            return null;
         }
 
-        // Atualiza uma solicitação no banco de dados
+        // Método para atualizar uma solicitação existente
         public void Atualizar(Solicitacao solicitacao)
         {
             try
@@ -81,12 +76,11 @@ namespace SANA.Util
                 string query = @"UPDATE Solicitacoes
                                  SET Nome = @Nome, Data = @Data, Status = @Status, NavioId = @NavioId
                                  WHERE Id = @Id";
-
                 using var command = new MySqlCommand(query, _connection);
                 command.Parameters.AddWithValue("@Nome", solicitacao.Nome);
                 command.Parameters.AddWithValue("@Data", solicitacao.Data);
                 command.Parameters.AddWithValue("@Status", solicitacao.Status);
-                command.Parameters.AddWithValue("@NavioId", solicitacao.Navio?.Id); // Considera o ID do Navio
+                command.Parameters.AddWithValue("@NavioId", solicitacao.Navio?.id ?? (object)DBNull.Value);
                 command.Parameters.AddWithValue("@Id", solicitacao.Id);
 
                 _connection.Open();
@@ -99,13 +93,12 @@ namespace SANA.Util
             }
         }
 
-        // Remove uma solicitação pelo ID
-        public void Remover(int id)
+        // Método para excluir uma solicitação
+        public void Excluir(int id)
         {
             try
             {
-                string query = @"DELETE FROM Solicitacoes WHERE Id = @Id";
-
+                string query = "DELETE FROM Solicitacoes WHERE Id = @Id";
                 using var command = new MySqlCommand(query, _connection);
                 command.Parameters.AddWithValue("@Id", id);
 
@@ -115,24 +108,21 @@ namespace SANA.Util
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao remover solicitação: {ex.Message}");
+                Console.WriteLine($"Erro ao excluir solicitação: {ex.Message}");
             }
         }
 
-        // Obtém todas as solicitações
-        public List<Solicitacao> ObterTodas()
+        // Método para listar todas as solicitações, do mais recente para o mais antigo
+        public List<Solicitacao> ListarTodos()
         {
             var solicitacoes = new List<Solicitacao>();
-
             try
             {
-                string query = @"SELECT Id, Nome, Data, Status, NavioId FROM Solicitacoes";
-
+                string query = "SELECT * FROM Solicitacoes ORDER BY Data DESC";
                 using var command = new MySqlCommand(query, _connection);
 
                 _connection.Open();
                 using var reader = command.ExecuteReader();
-
                 while (reader.Read())
                 {
                     solicitacoes.Add(new Solicitacao
@@ -141,25 +131,16 @@ namespace SANA.Util
                         Nome = reader.GetString("Nome"),
                         Data = reader.GetDateTime("Data"),
                         Status = reader.GetString("Status"),
-                        Navio = ObterNavioPorId(reader.GetInt32("NavioId")) // Carrega o navio associado
+                        Navio = new Navio { id = reader.GetInt32("NavioId") } // Simplificação
                     });
                 }
-
                 _connection.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Erro ao obter todas as solicitações: {ex.Message}");
+                Console.WriteLine($"Erro ao listar solicitações: {ex.Message}");
             }
-
             return solicitacoes;
-        }
-
-        // Método auxiliar para obter um navio por ID
-        private Navio ObterNavioPorId(int navioId)
-        {
-            var navioDAO = new NavioDAO(); // Certifique-se de ter um DAO para Navio
-            return navioDAO.ObterPorId(navioId);
         }
     }
 }

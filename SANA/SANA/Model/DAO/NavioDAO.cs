@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using SANA.Model.DTO;
 using System;
+using System.Collections.Generic;
 
 namespace SANA.Model.DAO
 {
@@ -132,5 +133,44 @@ namespace SANA.Model.DAO
                 Console.WriteLine($"Erro ao excluir navio: {ex.Message}");
             }
         }
+
+        // Método para listar todos os navios
+        public List<Navio> ListarTodos()
+        {
+            var navios = new List<Navio>();
+            try
+            {
+                string query = "SELECT * FROM Navios";
+                using var command = new MySqlCommand(query, _connection);
+
+                _connection.Open();
+                using var reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    navios.Add(new Navio
+                    {
+                        id = reader.GetInt32("id"),
+                        NomeNavio = reader.GetString("NomeNavio"),
+                        CaladoAereo = reader.GetDouble("CaladoAereo"),
+                        DWT = reader.GetDouble("DWT"),
+                        Loa = reader.GetDouble("Loa"),
+                        CaladoSaida = reader.GetDouble("CaladoSaida"),
+                        CaladoEntrada = reader.GetDouble("CaladoEntrada"),
+                        Boca = reader.GetDouble("Boca"),
+                        Pontal = reader.GetDouble("Pontal"),
+                        Lanca = reader.GetDouble("Lanca"),
+                        AnoConstrucao = reader.GetDouble("AnoConstrucao"),
+                        Tipo = reader.GetString("Tipo")
+                    });
+                }
+                _connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao listar navios: {ex.Message}");
+            }
+            return navios;
+        }
+
     }
 }

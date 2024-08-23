@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SANA.Model.DAO;
 using SANA.Model.DTO;
-using SANA.Util;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SANA.Model.Service
 {
@@ -16,67 +17,56 @@ namespace SANA.Model.Service
             _navioDAO = navioDAO;
         }
 
-        // Método para cadastrar uma nova solicitação
-        public void CadastrarSolicitacao(Solicitacao solicitacao)
-        {
-            if (solicitacao == null)
-                throw new ArgumentNullException(nameof(solicitacao));
-
-            if (solicitacao.Navio == null || _navioDAO.ObterPorId(solicitacao.Navio.Id) == null)
-                throw new ArgumentException("Navio associado não encontrado.");
-
-            _solicitacaoDAO.Adicionar(solicitacao);
-        }
-
-        // Método para atualizar uma solicitação existente
-        public void AtualizarSolicitacao(Solicitacao solicitacao)
-        {
-            if (solicitacao == null)
-                throw new ArgumentNullException(nameof(solicitacao));
-
-            if (_solicitacaoDAO.ObterPorId(solicitacao.Id) == null)
-                throw new ArgumentException("Solicitação não encontrada.");
-
-            if (solicitacao.Navio == null || _navioDAO.ObterPorId(solicitacao.Navio.Id) == null)
-                throw new ArgumentException("Navio associado não encontrado.");
-
-            _solicitacaoDAO.Atualizar(solicitacao);
-        }
-
-        // Método para excluir uma solicitação pelo ID
-        public void ExcluirSolicitacao(int id)
-        {
-            var solicitacao = _solicitacaoDAO.ObterPorId(id);
-            if (solicitacao == null)
-                throw new ArgumentException("Solicitação não encontrada.");
-
-            _solicitacaoDAO.Remover(id);
-        }
-
-        // Método para obter uma solicitação pelo ID
-        public Solicitacao ObterSolicitacaoPorId(int id)
-        {
-            var solicitacao = _solicitacaoDAO.ObterPorId(id);
-            if (solicitacao == null)
-                throw new ArgumentException("Solicitação não encontrada.");
-
-            return solicitacao;
-        }
-
-        // Método para listar todas as solicitações
-        public IEnumerable<Solicitacao> ListarTodasSolicitacoes()
-        {
-            return _solicitacaoDAO.ObterTodas();
-        }
-
-        // Método para listar todas as solicitações de um navio
-        public IEnumerable<Solicitacao> ListarSolicitacoesPorNavio(int navioId)
+        // Método para criar uma solicitação e associá-la a um navio
+        public void CriarSolicitacaoParaNavio(Solicitacao solicitacao, int navioId)
         {
             var navio = _navioDAO.ObterPorId(navioId);
             if (navio == null)
                 throw new ArgumentException("Navio não encontrado.");
 
-            return _solicitacaoDAO.ObterTodas().Where(s => s.Navio.Id == navioId);
+            solicitacao.Navio = navio;
+            _solicitacaoDAO.Adicionar(solicitacao);
+
+            navio.Solicitacoes.Add(solicitacao);
+            _navioDAO.Atualizar(navio); // Atualiza o navio com a nova solicitação
+        }
+
+        // Método para processar uma solicitação
+        public void ProcessarSolicitacao(int solicitacaoId)
+        {
+            var solicitacao = _solicitacaoDAO.ObterPorId(solicitacaoId);
+            if (solicitacao == null)
+                throw new ArgumentException("Solicitação não encontrada.");
+
+            // Exemplo de validação; ajuste conforme necessário
+            if (solicitacao.Navio.DWT > 10000) // Condição fictícia
+            {
+                solicitacao.Status = "Aceita";
+            }
+            else
+            {
+                solicitacao.Status = "Rejeitada";
+            }
+
+            _solicitacaoDAO.Atualizar(solicitacao);
+        }
+
+        // Método para excluir uma solicitação
+        public void ExcluirSolicitacao(int id)
+        {
+            _solicitacaoDAO.Excluir(id);
+        }
+
+        // Método para editar uma solicitação
+        public void EditarSolicitacao(Solicitacao solicitacao)
+        {
+            _solicitacaoDAO.Atualizar(solicitacao);
+        }
+
+        // Método para obter o histórico de solicitações (mais recente para mais antiga)
+        public IEnumerable<Solicitacao> HistoricoSolicitacoes()
+        {
+            return _solicitacaoDAO.ListarTodos();
         }
     }
 }
