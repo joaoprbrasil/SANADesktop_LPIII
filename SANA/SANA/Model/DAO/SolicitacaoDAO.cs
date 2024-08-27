@@ -7,7 +7,7 @@ namespace SANA.Model.DAO
 {
     public class SolicitacaoDAO
     {
-        private readonly MySqlConnection _connection;
+        private MySqlConnection _connection;
 
         public SolicitacaoDAO(MySqlConnection connection)
         {
@@ -15,13 +15,15 @@ namespace SANA.Model.DAO
         }
 
         // Método para adicionar uma nova solicitação
-        public void Adicionar(Solicitacao solicitacao)
+        public void salvar(Solicitacao solicitacao)
         {
             try
             {
-                string query = @"INSERT INTO Solicitacoes (Nome, Data, Status, NavioId)
+                string query = @"INSERT INTO Solicitacoes (Id, Data, Status, NavioId)
                                  VALUES (@Nome, @Data, @Status, @NavioId)";
                 using var command = new MySqlCommand(query, _connection);
+
+                command.Parameters.AddWithValue("@Id", solicitacao.Id);
                 command.Parameters.AddWithValue("@Nome", solicitacao.Nome);
                 command.Parameters.AddWithValue("@Data", solicitacao.Data);
                 command.Parameters.AddWithValue("@Status", solicitacao.Status);

@@ -3,11 +3,10 @@ using System;
 
 namespace SANA.Util
 {
-    // Esta classe cria a conexão com o banco
-    // Agora as informações sobre conexão estão dentro de uma única classe
+    // CLASSE QUE GERENCIA A CONEXÃO COM O BANCO DE DADOS
     public class ConexaoBD
     {
-        private MySqlConnection con;
+        private MySqlConnection con; // Atributo que representa a conexão com o banco de dados
 
         public ConexaoBD()
         {
@@ -17,7 +16,7 @@ namespace SANA.Util
             CriarBancoDeDados();
         }
 
-        // Método para criar o banco de dados se não existir
+        // Método para acessar ou criar o banco de dados se não existir
         private void CriarBancoDeDados()
         {
             try
@@ -33,16 +32,23 @@ namespace SANA.Util
                     comando.ExecuteNonQuery();
                 }
 
-                // Fecha a conexão
+                // Fecha a conexão inicial
                 con.Close();
 
                 // Atualiza a string de conexão para o banco de dados criado
-                string strconexaoComDB = "server=localhost;userid=root;password=;database=sana_bd";
+                string strconexaoComDB = "server=localhost;userid=root;password=;database=sana_db";
                 con = new MySqlConnection(strconexaoComDB);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao criar o banco de dados: {ex.Message}");
+            }
+            finally
+            {
+                if (con.State == System.Data.ConnectionState.Open)
+                {
+                    con.Close();
+                }
             }
         }
 

@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
-namespace SANA.Model.DTO
+namespace SANA.Model.Entities
 {
+    // CLASSE REPRESENTATIVA DA ENTIDADE NAVIO
     public class Navio
     {
-        public int id;
+        public int Id { get; set; }
         public string NomeNavio { get; set; } = string.Empty;
         public double CaladoAereo { get; set; }
         public double DWT { get; set; }
@@ -22,14 +19,17 @@ namespace SANA.Model.DTO
         public double AnoConstrucao { get; set; }
         public string Tipo { get; set; } = string.Empty;
 
+        // Lista de solicitações a qual o navio está associado
         public List<Solicitacao> Solicitacoes { get; set; } = new List<Solicitacao>();
 
-        public Navio(int ID, string nomeNavio, double caladoAereo, double dWT, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo, decimal salario, String solicitacao)
+        public Navio() { }
+
+        public Navio(int id, string nomeNavio, double caladoAereo, double dwt, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo)
         {
-            id = ID;
+            Id = id;
             NomeNavio = nomeNavio;
             CaladoAereo = caladoAereo;
-            DWT = dWT;
+            DWT = dwt;
             Loa = loa;
             CaladoSaida = caladoSaida;
             CaladoEntrada = caladoEntrada;
@@ -40,11 +40,11 @@ namespace SANA.Model.DTO
             Tipo = tipo;
         }
 
-        public Navio(string nomeNavio, double caladoAereo, double dWT, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo, decimal salario, String solicitacao)
+        public Navio(string nomeNavio, double caladoAereo, double dwt, double loa, double caladoSaida, double caladoEntrada, double boca, double pontal, double lanca, double anoConstrucao, string tipo)
         {
             NomeNavio = nomeNavio;
             CaladoAereo = caladoAereo;
-            DWT = dWT;
+            DWT = dwt;
             Loa = loa;
             CaladoSaida = caladoSaida;
             CaladoEntrada = caladoEntrada;
