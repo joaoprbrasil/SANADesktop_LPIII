@@ -218,6 +218,7 @@
             lblCaladoEntrada.Size = new Size(151, 15);
             lblCaladoEntrada.TabIndex = 33;
             lblCaladoEntrada.Text = "Calado de Entrada (metros)";
+            lblCaladoEntrada.Click += lblCaladoEntrada_Click;
             // 
             // txtBoca
             // 
@@ -314,6 +315,7 @@
             Name = "EditarNavio";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "EditarNavio";
+            Load += EditarNavio_Load;
             ResumeLayout(false);
             PerformLayout();
         }

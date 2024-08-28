@@ -103,6 +103,7 @@
             label1.Size = new Size(297, 28);
             label1.TabIndex = 28;
             label1.Text = "Nenhuma solicitação foi emitida.";
+            label1.Click += label1_Click;
             // 
             // SolicitarAceite
             // 

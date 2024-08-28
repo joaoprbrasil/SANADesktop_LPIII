@@ -1,10 +1,13 @@
-﻿using SANA.Model;
+﻿using SANA.Controllers;
+using SANA.Model.DAO;
+using SANA.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,19 +17,31 @@ namespace SANA
     public partial class EditarNavio : Form
     {
         private Navio navio;
-        private List<Navio> navios;
-        private int index;
+        NavioController navioController = new NavioController();
 
-        public EditarNavio()
+        public EditarNavio(Navio navio)
         {
             InitializeComponent();
+            this.navio = navio;
+            txtNomeNavio.Text = navio.NomeNavio;
+            txtDwt.Text = Convert.ToString(navio.DWT);
+            txtCaladoAereo.Text = Convert.ToString(navio.CaladoAereo);
+            txtLoa.Text = Convert.ToString(navio.Loa);
+            txtCaladoSaida.Text = Convert.ToString(navio.CaladoSaida);
+            txtCaladoEntrada.Text = Convert.ToString(navio.CaladoEntrada);
+            txtBoca.Text = Convert.ToString(navio.Boca);
+            txtPontal.Text = Convert.ToString(navio.Pontal);
+            txtTamanhoLanca.Text = Convert.ToString(navio.Lanca);
+            txtAnoConstrucao.Text = Convert.ToString(navio.AnoConstrucao);
+            txtTipoNavio.Text = navio.Tipo;
         }
+
+
 
         public EditarNavio(List<Navio> navios, Navio navio, int index)
         {
             InitializeComponent();
 
-            this.navios = navios;
 
             this.navio = navio;
             txtNomeNavio.Text = navio.NomeNavio;
@@ -40,7 +55,6 @@ namespace SANA
             txtTamanhoLanca.Text = Convert.ToString(navio.Lanca);
             txtAnoConstrucao.Text = Convert.ToString(navio.AnoConstrucao);
             txtTipoNavio.Text = navio.Tipo;
-            this.index = index;
         }
 
         private bool TodosCamposPreenchidos()
@@ -78,17 +92,12 @@ namespace SANA
                     double boca = Convert.ToDouble(txtBoca.Text);
                     double pontal = Convert.ToDouble(txtPontal.Text);
                     double tamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text);
-                    double anoConstrucao = Convert.ToDouble(txtAnoConstrucao.Text);
+                    int anoConstrucao = Convert.ToInt32(txtAnoConstrucao.Text);
                     String tipoNavio = txtTipoNavio.Text;
-                    decimal salario = 100;
-                    //decimal salario = Convert.ToDecimal(txtTipoNavio.Text);
 
-                    Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, salario, "Em processo.");
+                    Navio navio = new Navio(this.navio.id, nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, "Em processo.");
 
-                    if (index >= 0 && index < navios.Count)
-                    {
-                        navios[index] = navio;
-                    }
+                    navioController.editarNavio(navio);
 
                     MessageBox.Show("Navio atualizado com sucesso.");
                     this.Close();
@@ -111,6 +120,16 @@ namespace SANA
         }
 
         private void lblDwt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditarNavio_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblCaladoEntrada_Click(object sender, EventArgs e)
         {
 
         }

@@ -1,4 +1,4 @@
-﻿using SANA.Model;
+﻿using SANA.Model.Entities;
 using SANA.View;
 using System;
 using System.Collections.Generic;
@@ -14,18 +14,13 @@ namespace SANA
 {
     public partial class MenuPrincipal : Form
     {
-        private List<Navio> navios;
+
 
         public MenuPrincipal()
         {
             InitializeComponent();
         }
 
-        public MenuPrincipal(List<Navio> navios)
-        {
-            InitializeComponent();
-            this.navios = navios;
-        }
 
         // Método de retorno de chamada para o evento FormClosed
         private void TelaLogin_FormClosed(object sender, FormClosedEventArgs e)
@@ -52,7 +47,7 @@ namespace SANA
 
         private void visualizarEditarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SolicitarAceite solicitarAceite = new SolicitarAceite(navios);
+            SolicitarAceite solicitarAceite = new SolicitarAceite();
             solicitarAceite.MdiParent = this;
             solicitarAceite.Show();
         }
@@ -67,7 +62,7 @@ namespace SANA
 
         private void cadastrarNavioToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            TelaCadastroNavio telaCadastroNavio = new TelaCadastroNavio(navios);
+            TelaCadastroNavio telaCadastroNavio = new TelaCadastroNavio();
             telaCadastroNavio.MdiParent = this;
             telaCadastroNavio.Show();
         }
@@ -86,9 +81,14 @@ namespace SANA
 
         private void visualizarEditarToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            VisualizarNavios telaVisualizarNavios = new VisualizarNavios(navios);
+            VisualizarNavios telaVisualizarNavios = new VisualizarNavios();
             telaVisualizarNavios.MdiParent = this;
             telaVisualizarNavios.Show();
+        }
+
+        private void MenuPrincipal_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

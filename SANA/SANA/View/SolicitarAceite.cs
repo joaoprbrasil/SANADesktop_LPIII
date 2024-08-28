@@ -1,4 +1,7 @@
-﻿using SANA.Model;
+﻿using SANA.Controllers;
+using SANA.DTO;
+using SANA.Model.Entities;
+using SANA.Model.Services;
 using SANA.View;
 using System;
 using System.Collections;
@@ -17,34 +20,29 @@ namespace SANA
     {
         private List<Navio> navios;
         private List<Solicitacao> solicitacoes = new List<Solicitacao>();
+        private List<SolicitacaoDTO> solicitacoesDTO = new List<SolicitacaoDTO>();
+        SolicitacaoController solicitacaoController = new SolicitacaoController();
+
 
         public SolicitarAceite()
         {
             InitializeComponent();
-        }
+            // Carrega a lista de navios do banco de dados
+            this.solicitacoesDTO = solicitacaoController.ListarSolicitacoes();
 
-        public SolicitarAceite(List<Navio> navios)
-        {
-            InitializeComponent();
-            for (int i = 0; i < navios.Count; i++)
+            // Verifica se a lista contém elementos
+            if (solicitacoesDTO != null)
             {
-                //Console.WriteLine(navios[i]);
-                if (navios[i].Solicitacao.Equals("Aguardando Aceite.") || navios[i].Solicitacao.Equals("Recusada.") || navios[i].Solicitacao.Equals("Confirmada."))
-                {
-                    Solicitacao solicitacao = new Solicitacao(navios[i].NomeNavio, navios[i].Tipo, navios[i].Solicitacao);
-                    solicitacoes.Add(solicitacao);
-                }
-            }
-            if (solicitacoes.Count > 0)
-            {
+                // Limpa o texto do label e define a fonte de dados do DataGridView
                 label1.Text = "";
-                dataGridView1.DataSource = solicitacoes;
-                dataGridView1.Columns[0].Width = 290;
-                dataGridView1.Columns[1].Width = 275;
-                dataGridView1.Columns[2].Width = 290;
-
+                dataGridView1.DataSource = solicitacoesDTO;
+                dataGridView1.Columns[4].Width = 200;
+                dataGridView1.Columns[5].Width = 200;
             }
-            this.navios = navios;
+            else
+            {
+                label1.Text = "Nenhuma solicitação encontrado.";
+            }
         }
 
         private void btnVisualizarEditar_Click(object sender, EventArgs e)
@@ -64,33 +62,24 @@ namespace SANA
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
-                int index = linhaSelecionada.Index;
-                string nomeNavio = linhaSelecionada.Cells[0].Value.ToString();
-                string tipo = linhaSelecionada.Cells[1].Value.ToString();
+                SolicitacaoDTO solicitacaoDTO = (SolicitacaoDTO)dataGridView1.SelectedRows[0].DataBoundItem;
+
 
                 if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    for (int i = 0; i < navios.Count; i++)
+                    if (solicitacaoDTO.StatusSolicitacao.Equals("Recusada.") || solicitacaoDTO.StatusSolicitacao.Equals("Confirmada."))
                     {
-                        if (navios[i].NomeNavio.Equals(nomeNavio) && navios[i].Tipo.Equals(tipo))
+                        MessageBox.Show("Essa solicitação já foi " + solicitacaoDTO.StatusSolicitacao.ToLower());
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Tem certeza que você deseja confirmar essa solicitação?",
+                        "Warning", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
                         {
-                            if (navios[i].Solicitacao.Equals("Recusada.") || navios[i].Solicitacao.Equals("Confirmada."))
-                            {
-                                MessageBox.Show("Essa solicitação já foi " + navios[i].Solicitacao.ToLower() + ".");
-                            }
-                            else
-                            {
-                                DialogResult result = MessageBox.Show("Tem certeza que você deseja confirmar essa solicitação?",
-                                "Warning", MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Warning);
-                                if (result == DialogResult.Yes)
-                                {
-                                    navios[i].Solicitacao = "Confirmada.";
-                                    SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
-                                    telaSolicitacao.Show();
-                                    this.Close();
-                                }
-                            }
+                            solicitacaoDTO.StatusSolicitacao = "Confirmada.";
+                            solicitacaoController.AlterarStatusSolicitacao(solicitacaoDTO);
                         }
                     }
                 }
@@ -99,38 +88,32 @@ namespace SANA
 
         private void button2_Click(object sender, EventArgs e)
         {
-
-            DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
-            int index = linhaSelecionada.Index;
-            string nomeNavio = linhaSelecionada.Cells[0].Value.ToString();
-            string tipo = linhaSelecionada.Cells[1].Value.ToString();
-
             if (dataGridView1.SelectedRows.Count > 0)
             {
-                for (int i = 0; i < navios.Count; i++)
+                DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
+                SolicitacaoDTO solicitacaoDTO = (SolicitacaoDTO)dataGridView1.SelectedRows[0].DataBoundItem;
+
+
+                if (dataGridView1.SelectedRows.Count > 0)
                 {
-                    if (navios[i].NomeNavio.Equals(nomeNavio) && navios[i].Tipo.Equals(tipo))
+                    if (solicitacaoDTO.StatusSolicitacao.Equals("Recusada.") || solicitacaoDTO.StatusSolicitacao.Equals("Confirmada."))
                     {
-                        if (navios[i].Solicitacao.Equals("Recusada.") || navios[i].Solicitacao.Equals("Confirmada."))
+                        MessageBox.Show("Essa solicitação já foi " + solicitacaoDTO.StatusSolicitacao.ToLower());
+                    }
+                    else
+                    {
+                        DialogResult result = MessageBox.Show("Tem certeza que você deseja recusar essa solicitação?",
+                        "Warning", MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Warning);
+                        if (result == DialogResult.Yes)
                         {
-                            MessageBox.Show("Essa solicitação já foi " + navios[i].Solicitacao.ToLower() + ".");
-                        }
-                        else
-                        {
-                            DialogResult result = MessageBox.Show("Tem certeza que você deseja recusar essa solicitação?",
-                            "Warning", MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Warning);
-                            if (result == DialogResult.Yes)
-                            {
-                                navios[i].Solicitacao = "Recusada.";
-                                SolicitarAceite telaSolicitacao = new SolicitarAceite(navios);
-                                telaSolicitacao.Show();
-                                this.Close();
-                            }
+                            solicitacaoDTO.StatusSolicitacao = "Recusada.";
+                            solicitacaoController.AlterarStatusSolicitacao(solicitacaoDTO);
                         }
                     }
                 }
             }
+
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -139,6 +122,11 @@ namespace SANA
         }
 
         private void SolicitarAceite_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

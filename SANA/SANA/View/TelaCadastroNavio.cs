@@ -1,4 +1,6 @@
-﻿using SANA.Model;
+﻿using SANA.Controllers;
+using SANA.Model.Entities;
+using SANA.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,18 +15,15 @@ namespace SANA
 {
     public partial class TelaCadastroNavio : Form
     {
-        private List<Navio> navios;
+
+        NavioController navioController = new NavioController();
 
         public TelaCadastroNavio()
         {
             InitializeComponent();
         }
 
-        public TelaCadastroNavio(List<Navio> navios)
-        {
-            InitializeComponent();
-            this.navios = navios;
-        }
+        
 
         private void txtAnoConstrucao_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -78,12 +77,11 @@ namespace SANA
                     double boca = Convert.ToDouble(txtBoca.Text);
                     double pontal = Convert.ToDouble(txtPontal.Text);
                     double tamanhoLanca = Convert.ToDouble(txtTamanhoLanca.Text);
-                    double anoConstrucao = Convert.ToDouble(comboBox2.Text);
-                    decimal salario = 100;
-                    //decimal salario = Convert.ToDecimal(txtTipoNavio.Text);
+                    int anoConstrucao = Convert.ToInt32(comboBox2.Text);
 
-                    Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, salario, "Em processo.");
-                    navios.Add(navio);
+                    Navio navio = new Navio(nomeNavio, caladoAereo, dWT, lOA, caladoSaida, caladoEntrada, boca, pontal, tamanhoLanca, anoConstrucao, tipoNavio, "Em processo.");
+
+                    navioController.inserirNavio(navio);
 
                     MessageBox.Show("Navio cadastrado com sucesso.");
                     this.Close();

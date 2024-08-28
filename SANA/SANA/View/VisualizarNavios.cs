@@ -1,4 +1,7 @@
-﻿using SANA.Model;
+﻿using SANA.Model.DAO;
+using SANA.Model.Entities;
+using SANA.Controllers;
+using SANA.Model.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,28 +16,36 @@ namespace SANA.View
 {
     public partial class VisualizarNavios : Form
     {
+
         private List<Navio> navios;
+        NavioController navioController = new NavioController();
+        SolicitacaoController solicitacaoController = new SolicitacaoController();
+       
 
         public VisualizarNavios()
         {
             InitializeComponent();
-        }
 
-        public VisualizarNavios(List<Navio> navios)
-        {
-            InitializeComponent();
-            this.navios = navios;
-            if (navios != null)
+            // Carrega a lista de navios do banco de dados
+            this.navios = navioController.listarNavios();
+
+            // Verifica se a lista contém elementos
+            if (navios != null && navios.Count > 0)
             {
+                // Limpa o texto do label e define a fonte de dados do DataGridView
                 label1.Text = "";
                 dataGridView1.DataSource = navios;
             }
-
+            else
+            {
+                label1.Text = "Nenhum navio encontrado.";
+            }
         }
+
 
         private void btnVisualizarEditar_Click(object sender, EventArgs e)
         {
-            TelaCadastroNavio telaCadastroNavio = new TelaCadastroNavio(navios);
+            TelaCadastroNavio telaCadastroNavio = new TelaCadastroNavio();
             telaCadastroNavio.Show();
             this.Close();
         }
@@ -44,18 +55,20 @@ namespace SANA.View
             if (dataGridView1.SelectedRows.Count > 0)
             {
                 Navio navioSelecionado = (Navio)dataGridView1.SelectedRows[0].DataBoundItem;
-                if(navioSelecionado.Solicitacao.Equals("Confirmada.") || navioSelecionado.Solicitacao.Equals("Recusada."))
+                if (navioSelecionado.Solicitacao.Equals("Confirmada.") || navioSelecionado.Solicitacao.Equals("Recusada."))
                 {
                     MessageBox.Show("Esse navio não pode ser excluido, a solicitação dele está " + navioSelecionado.Solicitacao.ToLower() + ".");
                 }
                 else
                 {
-                    navios.Remove(navioSelecionado);
-                    VisualizarNavios telaVisualizar = new VisualizarNavios(navios);
+                    //navios.Remove(navioSelecionado);
+                    //navioDAO.Excluir(navioSelecionado);
+                    navioController.removerNavio(navioSelecionado);
+                    VisualizarNavios telaVisualizar = new VisualizarNavios();
                     telaVisualizar.Show();
                     this.Close();
                 }
-                
+
             }
         }
 
@@ -66,8 +79,9 @@ namespace SANA.View
                 Navio navioSelecionado = (Navio)dataGridView1.SelectedRows[0].DataBoundItem;
                 DataGridViewRow linhaSelecionada = dataGridView1.SelectedRows[0];
                 int index = linhaSelecionada.Index;
-                EditarNavio editarNavio = new EditarNavio(navios, navioSelecionado, index);
+                EditarNavio editarNavio = new EditarNavio(navioSelecionado);
                 editarNavio.Show();
+                this.Close();
             }
         }
 
@@ -89,10 +103,28 @@ namespace SANA.View
                 }
                 else
                 {
+                    Solicitacao solicitacao = new Solicitacao();
+                    solicitacao.data = DateTime.Now;
+                    solicitacaoController.InserirSolicitacao(solicitacao, navioSelecionado);
+
+
                     navioSelecionado.Solicitacao = "Aguardando Aceite.";
-                    MessageBox.Show("Solicitação enviada com sucesso!");
+                    navioController.editarNavio(navioSelecionado);
+                    
+                    MessageBox.Show("Solicitação emitida!");
+
                 }
             }
+        }
+
+        private void VisualizarNavios_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
